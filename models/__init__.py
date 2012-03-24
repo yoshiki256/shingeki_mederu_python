@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from mongokit import Connection,Document
+from mongokit import Connection,Document,ObjectId
 import datetime
 
 HOST = 'localhost'
@@ -57,21 +57,25 @@ class Tweet(Document):
     }
     use_autorefs = True
 
+    @classmethod
+    def get_tweet(cls,id):
+        return tweets.find_one({'_id':ObjectId(id)})
+
 characters = database['characters']
 character = characters.Character()
-character['_id']='character'
+#character['_id']='character'
 character['nick_name'] =u'mikasa'
 character.save()
 
 users = database['users']
 user = users.User()
-user['_id']='user'
+#user['_id']='user'
 user['name'] = u'ymizushi'
 user.save()
 
 tweets = database['tweets']
 tweet = tweets.Tweet()
-tweet['_id']='tweet'
+#tweet['_id']='tweet'
 tweet['text'] = u'text'
 tweet['user'] = user
 tweet['character'] = character

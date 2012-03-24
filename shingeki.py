@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def get_index():
-    values = dict(hoge = "")
+    values = None
     return render_template('index.html',values=values)
 
 @app.route('/tweets')
@@ -21,6 +21,13 @@ def get_tweets():
         tweets.append(tweet)
     values = dict(tweets = tweets)
     return render_template('tweets/index.html',values=values)
+
+@app.route('/tweets/<id>')
+def get_tweet(id):
+    tweet = models.Tweet.get_tweet(id)
+    values = dict(tweet = tweet)
+    print tweet
+    return render_template('tweets/view.html',values=values)
 
 @app.route('/users')
 def get_users():
