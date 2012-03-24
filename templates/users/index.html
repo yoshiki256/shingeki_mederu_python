@@ -1,5 +1,41 @@
-<html>
-<body>
-{{values.users}}
-</body>
-</html>
+{% extends "base.html" %}
+{% block right%}
+  <table class="bordered">
+    <tr>
+      <th>
+        作成日
+      </th>
+      <th>
+        更新日
+      </th>
+      <th>
+        ニックネーム
+      </th>
+      <th>
+        検索名
+      </th>
+      <th>
+        ファーストネーム
+      </th>
+    </tr>
+    {% for user in values.users%}
+      <tr>
+        <td>
+          {{user.created}}
+        </td>
+        <td>
+          {{user.modified}}
+        </td>
+        <td>
+          {{user.screen_name}}
+        </td>
+        <td>
+          {{user.profile_image_url}}
+        </td>
+        <td>
+          {{user.name}}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

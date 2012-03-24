@@ -3,7 +3,6 @@
 from flask import Flask
 from flask import render_template
 import models
-import time
 
 app = Flask(__name__)
 
@@ -14,19 +13,24 @@ def get_index():
 
 @app.route('/tweets')
 def get_tweets():
-    tweets = [tweet for tweet in models.Tweets.find()]
+    tweets = list()
+    for tweet in models.tweets.find():
+        tweet['user']=models.database.dereference(tweet['user'])
+        tweet['character']=models.database.dereference(tweet['character'])
+
+        tweets.append(tweet)
     values = dict(tweets = tweets)
     return render_template('tweets/index.html',values=values)
 
 @app.route('/users')
 def get_users():
-    users = [user for user in models.Users.find()]
+    users = [user for user in models.users.find()]
     values = dict(users = users)
     return render_template('users/index.html',values=values)
 
 @app.route('/characters')
 def get_character():
-    characters = [character for character in models.Characters.find()]
+    characters = [character for character in models.characters.find()]
     values = dict(characters = characters)
     return render_template('characters/index.html',values=values)
 

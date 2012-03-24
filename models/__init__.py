@@ -1,82 +1,78 @@
 # -*- coding: utf-8 -*-
 
-from pymongo import Connection
-import time
-conn = Connection('localhost')
+from mongokit import Connection,Document
+import datetime
 
-class Tweets:
-    tweets = conn['shingeki']['tweets']
+HOST = 'localhost'
+DATABASE = 'shingeki'
+
+conn = Connection(HOST)
+database = conn[DATABASE]
+
+@conn.register
+class User(Document):
     structure = {
-        'created' : time.asctime(),
-        'modified' : time.asctime(),
-        'character_id' : dict(),
-        'user_id' : dict(),
-        'created_at' : str(),
-        'source' : str(),
-        'text' : str(),
+        'created' : datetime.datetime,
+        'modified' : datetime.datetime,
+        'screen_name' : unicode,
+        'profile_image_url' : unicode,
+        'name' : unicode,
+    }
+    default_values = {
+        'created' : datetime.datetime.now,
+        'modified' : datetime.datetime.now,
     }
 
-    @classmethod
-    def find(cls,query=None):
-        return cls.tweets.find(query)
-
-    @classmethod
-    def get(cls):
-        return cls.structure
-    
-    @classmethod
-    def put(cls):
-        tweets.save(cls.structure)
-
-class Users:
-    users = conn['shingeki']['users']
+@conn.register
+class Character(Document):
     structure = {
-        'created' : time.asctime(),
-        'modified' : time.asctime(),
-        'screen_name' : str(),
-        'profile_image_url' : str(),
-        'name' : str(),
+        'created' : datetime.datetime,
+        'modified' : datetime.datetime,
+        'nick_name' : unicode,
+        'search_name' : unicode,
+        'full_name' : unicode,
+        'profile_text' : unicode,
+        'vote_number' : int,
+    }
+    default_values = {
+        'created' : datetime.datetime.now,
+        'modified' : datetime.datetime.now,
+        'vote_number' : 0,
     }
 
-    @classmethod
-    def find(cls,query=None):
-        return cls.users.find(query)
-
-    @classmethod
-    def get(cls):
-        return cls.structure
-
-    @classmethod
-    def insert(self):
-        return users.insert(cls.structure)
-
-class Characters:
-    characters = conn['shingeki']['characters']
+@conn.register
+class Tweet(Document):
     structure = {
-        'created' : time.asctime(),
-        'modified' : time.asctime(),
-        'nick_name' : 'mikasa',
-        'search_name' : u'ミカサ',
-        'first_name_en' : str(),
-        'last_name_en' : str(),
-        'first_name_jp' : str(),
-        'last_name_jp' : str(),
-        'profile_text' : str(),
-        'vote_number' : int(),
+        'created' : datetime.datetime,
+        'modified' : datetime.datetime,
+        'character' : Character,
+        'user' : User,
+        'created_at' : datetime.datetime,
+        'source' : unicode,
+        'text' : unicode,
     }
+    default_values = {
+        'created' : datetime.datetime.now,
+        'modified' : datetime.datetime.now,
+    }
+    use_autorefs = True
 
-    @classmethod
-    def find(cls,query=None):
-        return cls.characters.find(query)
+characters = database['characters']
+character = characters.Character()
+character['_id']='character'
+character['nick_name'] =u'mikasa'
+character.save()
 
-    @classmethod
-    def get(cls):
-        return cls.structure
+users = database['users']
+user = users.User()
+user['_id']='user'
+user['name'] = u'ymizushi'
+user.save()
 
-    @classmethod
-    def set(cls,structure):
-        cls.structure = structure
-
-    @classmethod
-    def insert(cls):
-        return cls.characters.insert(cls.structure)
+tweets = database['tweets']
+tweet = tweets.Tweet()
+tweet['_id']='tweet'
+tweet['text'] = u'text'
+tweet['user'] = user
+tweet['character'] = character
+tweet.save()
