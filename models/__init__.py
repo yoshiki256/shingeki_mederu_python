@@ -7,10 +7,10 @@ conn = Connection('localhost')
 class Tweets:
     tweets = conn['shingeki']['tweets']
     structure = {
-        'created' : str(),
-        'modified' : str(),
-        'character' : dict(),
-        'user' : dict(),
+        'created' : time.asctime(),
+        'modified' : time.asctime(),
+        'character_id' : dict(),
+        'user_id' : dict(),
         'created_at' : str(),
         'source' : str(),
         'text' : str(),
@@ -24,8 +24,9 @@ class Tweets:
     def get(cls):
         return cls.structure
     
-    def put(self):
-        tweets.insert(cls.structure)
+    @classmethod
+    def put(cls):
+        tweets.save(cls.structure)
 
 class Users:
     users = conn['shingeki']['users']
@@ -52,10 +53,10 @@ class Users:
 class Characters:
     characters = conn['shingeki']['characters']
     structure = {
-        'created' : str(),
-        'modified' : str(),
+        'created' : time.asctime(),
+        'modified' : time.asctime(),
         'nick_name' : 'mikasa',
-        'search_name' : '',
+        'search_name' : u'ミカサ',
         'first_name_en' : str(),
         'last_name_en' : str(),
         'first_name_jp' : str(),

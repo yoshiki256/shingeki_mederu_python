@@ -1,1 +1,29 @@
-
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+<div class="header">
+  {% block header %}
+    <p class="header"><a href="/">進撃愛でる</a></p>
+  {% endblock %}
+</div>
+<div class="left">
+  {% block left %}
+     <span class="button1"><a href="/">TOP</a></span>
+  {% endblock %}
+</div>
+<div class="right">
+  {% block right %}{% endblock %}
+</div>
+<div class="footer">
+  {% block footer %}
+    <a href="mailto:mizushi@gmail.com">Yuta Mizushima</a>
+  {% endblock %}
+</div>
+</body>
+</html>

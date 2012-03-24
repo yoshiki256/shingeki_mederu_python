@@ -1,15 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
-
-<link rel="stylesheet" type="text/css" href="static/style.css">
-</head>
-<body>
-
-<table class="bordered">
+{% extends "base.html" %}
+{% block right%}
+  <table class="bordered">
     <tr>
       <th>
         作成日
@@ -42,40 +33,39 @@
         投票数
       </th>
     </tr>
-  {% for character in values.characters%}
-    <tr>
-      <td>
-        {{character.created}}
-      </td>
-      <td>
-        {{character.modified}}
-      </td>
-      <td>
-        {{character.nick_name}}
-      </td>
-      <td>
-        {{character.search_name}}
-      </td>
-      <td>
-        {{character.first_name_en}}
-      </td>
-      <td>
-        {{character.last_name_en}}
-      </td>
-      <td>
-        {{character.first_name_jp}}
-      </td>
-      <td>
-        {{character.last_name_jp}}
-      </td>
-      <td>
-        {{character.profile_text}}
-      </td>
-      <td>
-        {{character.vote_number}}
-      </td>
-    </tr>
-  {% endfor %}
-</table>
-</body>
-</html>
+    {% for character in values.characters%}
+      <tr>
+        <td>
+          {{character.created}}
+        </td>
+        <td>
+          {{character.modified}}
+        </td>
+        <td>
+          {{character.nick_name}}
+        </td>
+        <td>
+          {{character.search_name}}
+        </td>
+        <td>
+          {{character.first_name_en}}
+        </td>
+        <td>
+          {{character.last_name_en}}
+        </td>
+        <td>
+          {{character.first_name_jp}}
+        </td>
+        <td>
+          {{character.last_name_jp}}
+        </td>
+        <td>
+          {{character.profile_text}}
+        </td>
+        <td>
+          {{character.vote_number}}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
