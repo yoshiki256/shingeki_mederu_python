@@ -48,7 +48,7 @@ def get_characters():
 
 @app.route('/characters/<id>')
 def get_character(id):
-    character = models.character.get_character(id)
+    character = models.Character.get_character(id)
     values = dict(character = character)
     return render_template('characters/view.html',values=values)
 

@@ -37,12 +37,14 @@ class Character(Document):
         'profile_text' : unicode,
         'profile_image_url' : unicode,
         'comment' : dict,
+        'comment_number': int,
         'vote_number' : int,
     }
     default_values = {
         'created' : datetime.datetime.now,
         'modified' : datetime.datetime.now,
         'vote_number' : 0,
+        'comment_number' : 0,
     }
 
     @classmethod
@@ -71,18 +73,18 @@ class Tweet(Document):
         return tweets.find_one({'_id':ObjectId(id)})
 
 characters = database['characters']
-character = characters.Character()
-character['nick_name'] =u'mikasa'
-character.save()
+#character = characters.Character()
+#character['nick_name'] =u'mikasa'
+#character.save()
 
 users = database['users']
-user = users.User()
-user['name'] = u'ymizushi'
-user.save()
+#user = users.User()
+#user['name'] = u'ymizushi'
+#user.save()
 
 tweets = database['tweets']
-tweet = tweets.Tweet()
-tweet['text'] = u'text'
-tweet['user'] = user
-tweet['character'] = character
-tweet.save()
+#tweet = tweets.Tweet()
+#tweet['text'] = u'text'
+#tweet['user'] = user
+#tweet['character'] = character
+#tweet.save()
