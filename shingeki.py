@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask
+from flask import Flask,request
 from flask import render_template
 import models
 
@@ -46,9 +46,13 @@ def get_characters():
     values = dict(characters = characters)
     return render_template('characters/index.html',values=values)
 
-@app.route('/characters/<id>')
+@app.route('/characters/<id>',methods=['GET','POST'])
 def get_character(id):
     character = models.Character.get_character(id)
+    print character
+    if request.method =='POST':
+        print request.form['text']
+        models.Character.update_character(id,{'comment':request.form['text']})
     values = dict(character = character)
     return render_template('characters/view.html',values=values)
 

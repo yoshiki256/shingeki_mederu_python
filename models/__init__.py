@@ -36,7 +36,7 @@ class Character(Document):
         'full_name' : unicode,
         'profile_text' : unicode,
         'profile_image_url' : unicode,
-        'comment' : dict,
+        'comment' : unicode,
         'comment_number': int,
         'vote_number' : int,
     }
@@ -45,11 +45,15 @@ class Character(Document):
         'modified' : datetime.datetime.now,
         'vote_number' : 0,
         'comment_number' : 0,
+        'comment' : u'hoge',
     }
 
     @classmethod
     def get_character(cls,id):
         return characters.find_one({'_id':ObjectId(id)})
+    @classmethod
+    def update_character(cls,id,query):
+        return characters.update({"_id":ObjectId(id)},{"$set" :query})
 
 @conn.register
 class Tweet(Document):

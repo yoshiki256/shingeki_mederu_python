@@ -54,4 +54,14 @@
       </td>
     </tr>
   </table>
+  {{values.character.comment}}
+  {% for comment in values.character.comment %}
+    {{comment.text}}
+  {% endfor %}
+
+  <form method="post" action="/characters/{{values.character._id}}">
+    <input type="text" name="text" value="">
+    <input type="submit" value="投稿">
+  </form>
+  
 {% endblock %}
