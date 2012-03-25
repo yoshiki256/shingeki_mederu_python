@@ -48,11 +48,10 @@ def get_characters():
 
 @app.route('/characters/<id>',methods=['GET','POST'])
 def get_character(id):
-    character = models.Character.get_character(id)
-    print character
     if request.method =='POST':
-        print request.form['text']
-        models.Character.update_character(id,{'comment':request.form['text']})
+        models.Character.update_character(id,{"$push" : {'comment':{'text' : request.form['text']}}})
+        #models.Character.update_character(id,{"$set" : {'comment':request.form['text']}})
+    character = models.Character.get_character(id)
     values = dict(character = character)
     return render_template('characters/view.html',values=values)
 

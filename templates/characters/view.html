@@ -54,9 +54,8 @@
       </td>
     </tr>
   </table>
-  {{values.character.comment}}
   {% for comment in values.character.comment %}
-    {{comment.text}}
+    {{comment.text}}<br>
   {% endfor %}
 
   <form method="post" action="/characters/{{values.character._id}}">
