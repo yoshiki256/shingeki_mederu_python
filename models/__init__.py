@@ -22,6 +22,9 @@ class User(Document):
         'created' : datetime.datetime.now,
         'modified' : datetime.datetime.now,
     }
+    @classmethod
+    def get_user(cls,id):
+        return users.find_one({'_id':ObjectId(id)})
 
 @conn.register
 class Character(Document):
@@ -32,6 +35,8 @@ class Character(Document):
         'search_name' : unicode,
         'full_name' : unicode,
         'profile_text' : unicode,
+        'profile_image_url' : unicode,
+        'comment' : dict,
         'vote_number' : int,
     }
     default_values = {
@@ -39,6 +44,10 @@ class Character(Document):
         'modified' : datetime.datetime.now,
         'vote_number' : 0,
     }
+
+    @classmethod
+    def get_character(cls,id):
+        return characters.find_one({'_id':ObjectId(id)})
 
 @conn.register
 class Tweet(Document):
@@ -63,19 +72,16 @@ class Tweet(Document):
 
 characters = database['characters']
 character = characters.Character()
-#character['_id']='character'
 character['nick_name'] =u'mikasa'
 character.save()
 
 users = database['users']
 user = users.User()
-#user['_id']='user'
 user['name'] = u'ymizushi'
 user.save()
 
 tweets = database['tweets']
 tweet = tweets.Tweet()
-#tweet['_id']='tweet'
 tweet['text'] = u'text'
 tweet['user'] = user
 tweet['character'] = character

@@ -26,7 +26,6 @@ def get_tweets():
 def get_tweet(id):
     tweet = models.Tweet.get_tweet(id)
     values = dict(tweet = tweet)
-    print tweet
     return render_template('tweets/view.html',values=values)
 
 @app.route('/users')
@@ -35,11 +34,23 @@ def get_users():
     values = dict(users = users)
     return render_template('users/index.html',values=values)
 
+@app.route('/users/<id>')
+def get_user(id):
+    user = models.User.get_user(id)
+    values = dict(user = user)
+    return render_template('users/view.html',values=values)
+
 @app.route('/characters')
-def get_character():
+def get_characters():
     characters = [character for character in models.characters.find()]
     values = dict(characters = characters)
     return render_template('characters/index.html',values=values)
+
+@app.route('/characters/<id>')
+def get_character(id):
+    character = models.character.get_character(id)
+    values = dict(character = character)
+    return render_template('characters/view.html',values=values)
 
 if __name__ == '__main__':
     app.debug = True

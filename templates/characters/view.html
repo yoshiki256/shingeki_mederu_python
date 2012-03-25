@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block right%}
+  <table class="bordered">
+    <tr>
+      <th>
+        作成日
+      </th>
+      <th>
+        更新日
+      </th>
+      <th>
+        ニックネーム
+      </th>
+      <th>
+        検索名
+      </th>
+      <th>
+        フルネーム
+      </th>
+      <th>
+        プロフィール
+      </th>
+      <th>
+        投票数
+      </th>
+    </tr>
+    <tr>
+      <td>
+        {{values.character.created}}
+      </td>
+      <td>
+        {{values.character.modified}}
+      </td>
+      <td>
+        {{values.character.nick_name}}
+      </td>
+      <td>
+        {{values.character.search_name}}
+      </td>
+      <td>
+        {{values.character.full_name}}
+      </td>
+      <td>
+        {{values.character.profile_text}}
+      </td>
+      <td>
+        {{values.character.vote_number}}
+      </td>
+    </tr>
+  </table>
+{% endblock %}

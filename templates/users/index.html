@@ -9,13 +9,16 @@
         更新日
       </th>
       <th>
-        ニックネーム
+        スクリーンネーム
       </th>
       <th>
-        検索名
+        プロフィール画像
       </th>
       <th>
-        ファーストネーム
+        名前
+      </th>
+      <th>
+        詳細
       </th>
     </tr>
     {% for user in values.users%}
@@ -34,6 +37,9 @@
         </td>
         <td>
           {{user.name}}
+        </td>
+        <td>
+          <a href="/users/{{user._id}}">詳細</a>
         </td>
       </tr>
     {% endfor %}
