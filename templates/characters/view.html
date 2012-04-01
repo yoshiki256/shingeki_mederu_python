@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block right%}
+  <table class="bordered">
+    <tr>
+      <th>
+        作成日
+      </th>
+      <th>
+        更新日
+      </th>
+      <th>
+        ニックネーム
+      </th>
+      <th>
+        検索名
+      </th>
+      <th>
+        フルネーム
+      </th>
+      <th>
+        プロフィール
+      </th>
+      <th>
+        投票数
+      </th>
+      <th>
+        コメント数
+      </th>
+    </tr>
+    <tr>
+      <td>
+        {{values.character.created}}
+      </td>
+      <td>
+        {{values.character.modified}}
+      </td>
+      <td>
+        {{values.character.nick_name}}
+      </td>
+      <td>
+        {{values.character.search_name}}
+      </td>
+      <td>
+        {{values.character.full_name}}
+      </td>
+      <td>
+        {{values.character.profile_text}}
+      </td>
+      <td>
+        {{values.character.vote_number}}
+      </td>
+      <td>
+        {{values.character.comment_number}}
+      </td>
+    </tr>
+  </table>
+  {% for comment in values.character.comment %}
+    {{comment.text}}<br>
+  {% endfor %}
+
+  <form method="post" action="/characters/{{values.character._id}}">
+    <input type="text" name="text" value="">
+    <input type="submit" value="投稿">
+  </form>
+  
+{% endblock %}

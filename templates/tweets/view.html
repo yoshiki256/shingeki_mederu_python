@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block right %}
+  <table class="bordered">
+    <tr>
+      <th>
+        作成日
+      </th>
+      <th>
+        更新日
+      </th>
+      <th>
+        更新日(Twitterで投稿された日付）
+      </th>
+      <th>
+        Twitterクライアント
+      </th>
+      <th>
+        本文
+      </th>
+      <th>
+        ユーザ
+      </th>
+      <th>
+        キャラクター
+      </th>
+    </tr>
+    <tr>
+      <td>
+        {{values.tweet.created}}
+      </td>
+      <td>
+        {{values.tweet.modified}}
+      </td>
+      <td>
+        {{values.tweet.created_at}}
+      </td>
+      <td>
+        {{values.tweet.source}}
+      </td>
+      <td>
+        {{values.tweet.text}}
+      </td>
+      <td>
+        {{values.tweet.user}}
+      </td>
+      <td>
+        {{values.tweet.character}}
+      </td>
+    </tr>
+  </table>
+{% endblock %}

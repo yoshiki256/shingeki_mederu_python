@@ -14,19 +14,17 @@ div.header {
     -moz-border-radius-bottomleft: 20px;
 }
 span.button1 {
-    background-image:-moz-linear-gradient(top, red, pink);
+    background-image: -moz-linear-gradient(top, red, pink);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(red), to(pink), color-stop(1,#C8C9CA));
- 
-    border:2px solid #F2F2F2;
- 
-    -webkit-border-top-right-radius: 20px;
-    -webkit-border-top-left-radius: 20px;
-    -webkit-border-bottom-left-radius: 20px;
-    -webkit-border-bottom-right-radius: 20px;
-    -moz-border-radius-topleft: 20px;
-    -moz-border-radius-topright: 20px;
-    -moz-border-radius-bottomright: 20px;
-    -moz-border-radius-bottomleft: 20px;
+    background-position:0% 100%; 
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-top-left-radius:  5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
 }
 
 p.header{

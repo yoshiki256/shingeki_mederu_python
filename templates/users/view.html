@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block right %}
+  <table class="bordered">
+    <tr>
+      <th>
+        作成日
+      </th>
+      <th>
+        更新日
+      </th>
+      <th>
+        スクリーンネーム
+      </th>
+      <th>
+        プロフィール画像
+      </th>
+      <th>
+        名前
+      </th>
+    </tr>
+    <tr>
+      <td>
+        {{values.user.created}}
+      </td>
+      <td>
+        {{values.user.modified}}
+      </td>
+      <td>
+        {{values.user.screen_name}}
+      </td>
+      <td>
+        {{values.user.profile_image_url}}
+      </td>
+      <td>
+        {{values.user.name}}
+      </td>
+    </tr>
+  </table>
+{% endblock %}

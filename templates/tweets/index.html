@@ -1,5 +1,60 @@
-<html>
-<body>
-{{values.tweets}}
-</body>
-</html>
+{% extends "base.html" %}
+{% block right%}
+  <table class="bordered">
+    <tr>
+      <th>
+        作成日
+      </th>
+      <th>
+        更新日
+      </th>
+      <th>
+        更新日(Twitterで投稿された日付）
+      </th>
+      <th>
+        Twitterクライアント
+      </th>
+      <th>
+        本文
+      </th>
+      <th>
+        ユーザ
+      </th>
+      <th>
+        キャラクター
+      </th>
+      <th>
+        ツイートの詳細を見る
+      </th>
+    </tr>
+    {% for tweet in values.tweets%}
+      <tr>
+        <td>
+          {{tweet.created}}
+        </td>
+        <td>
+          {{tweet.modified}}
+        </td>
+        <td>
+          {{tweet.created_at}}
+        </td>
+        <td>
+          {{tweet.source}}
+        </td>
+        <td>
+          {{tweet.text}}
+        </td>
+        <td>
+          {{tweet.user}}
+        </td>
+        <td>
+          {{tweet.character}}
+        </td>
+        <td>
+          <a href="/tweets/{{tweet._id}}">詳細</a>
+        </td>
+
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

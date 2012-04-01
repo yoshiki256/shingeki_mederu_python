@@ -1,20 +1,22 @@
 # -*- coding: utf-8 -*-
-from models import *
+import models
+import csv
 
-characters_structure = [
-    {
-        'created' : str(),
-        'modified' : str(),
-        'nick_name' : 'mikasa',
-        'search_name' : u'ミカサ',
-        'first_name_en' : str(),
-        'last_name_en' : str(),
-        'first_name_jp' : str(),
-        'last_name_jp' : str(),
-        'profile_text' : str(),
-        'vote_number' : int(),
-    }
-]
+character_reader = csv.reader(open('character.csv','rb'),delimiter=',')
 
-Characters.set(characters_structure)
-Characters.insert()
+character_list = list()
+for row in character_reader:
+    character_list.append(row)
+
+new_character_list = list()
+for row in character_list[1:]:
+    character_dict = dict()
+    for i,v in enumerate(row):
+        character_dict[character_list[0][i]]= unicode(v,'utf-8')
+    new_character_list.append(character_dict)
+
+for hoge in new_character_list:
+    character = models.characters.Character()
+    for k,v in hoge.iteritems():
+        character[k] = v
+    character.save()

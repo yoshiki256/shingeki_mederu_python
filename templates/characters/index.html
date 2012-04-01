@@ -15,22 +15,19 @@
         検索名
       </th>
       <th>
-        ファーストネーム
-      </th>
-      <th>
-        ラストネーム
-      </th>
-      <th>
-        苗字
-      </th>
-      <th>
-        名前
+        フルネーム
       </th>
       <th>
         プロフィール
       </th>
       <th>
         投票数
+      </th>
+      <th>
+        コメント数
+      </th>
+      <th>
+        詳細
       </th>
     </tr>
     {% for character in values.characters%}
@@ -48,22 +45,19 @@
           {{character.search_name}}
         </td>
         <td>
-          {{character.first_name_en}}
-        </td>
-        <td>
-          {{character.last_name_en}}
-        </td>
-        <td>
-          {{character.first_name_jp}}
-        </td>
-        <td>
-          {{character.last_name_jp}}
+          {{character.full_name}}
         </td>
         <td>
           {{character.profile_text}}
         </td>
         <td>
           {{character.vote_number}}
+        </td>
+        <td>
+          {{character.comment_number}}
+        </td>
+        <td>
+          <a href="/characters/{{character._id}}">詳細</a>
         </td>
       </tr>
     {% endfor %}
